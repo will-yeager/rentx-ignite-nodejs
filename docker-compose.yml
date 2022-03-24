@@ -1,0 +1,39 @@
+version: '3.7'
+
+services:
+  postgres_rentx:
+    image: postgres
+    container_name: postgres_rentx
+    restart: always
+    tty: true
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_DB=rentx
+    networks:
+      - rentx-network
+    volumes:
+      - pgdata:/data/postgres
+  api-rentx:
+    build: .
+    entrypoint: .docker/entrypoint.sh
+    container_name: api-rentx
+    ports:
+      - 3333:3333
+    networks:
+      - rentx-network
+    volumes:
+      - .:/usr/app
+    links:
+      - postgres_rentx
+    depends_on:
+      - postgres_rentx
+
+volumes:
+  pgdata:
+    driver: local
+networks:
+  rentx-network:
+    driver: bridge

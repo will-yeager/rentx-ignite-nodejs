@@ -1,0 +1,40 @@
+import { ICretateRentalDTO } from '@modules/rentals/dtos/ICreateRentalDTO';
+import { Rental } from '@modules/rentals/infra/typeorm/entities/Rental';
+import { IRentalsRepository } from '@modules/rentals/repositories/IRentalsRepository';
+
+class InMemoryRentalsRepository implements IRentalsRepository {
+  rentals: Array<Rental> = new Array<Rental>();
+
+  async findById(car_id: string): Promise<Rental> {
+    return this.rentals.find((rental) => rental.id === car_id);
+  }
+
+  async findByUser(user_id: string): Promise<Array<Rental>> {
+    return this.rentals.filter((rental) => rental.user_id === user_id);
+  }
+
+  async findOpenRentalByCar(car_id: string): Promise<Rental> {
+    return this.rentals.find((rental) => rental.car_id === car_id && !rental.end_date);
+  }
+
+  async findOpenRentalByUser(user_id: string): Promise<Rental> {
+    return this.rentals.find((rental) => rental.user_id === user_id && !rental.end_date);
+  }
+
+  async create({ car_id, expected_return_date, user_id }: ICretateRentalDTO): Promise<Rental> {
+    const rental = new Rental();
+
+    Object.assign(rental, {
+      car_id,
+      expected_return_date,
+      user_id,
+      start_date: new Date(),
+    });
+
+    this.rentals.push(rental);
+
+    return rental;
+  }
+}
+
+export { InMemoryRentalsRepository };
