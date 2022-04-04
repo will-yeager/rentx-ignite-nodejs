@@ -22,12 +22,13 @@ class EtherealMailProvider implements IMailProvider {
             pass: account.pass,
           },
         });
+
         this.client = transporter;
       })
-      .catch((error) => console.error(error));
+      .catch((err) => console.error(err));
   }
 
-  async sendMail(to: string, subject: string, variables: unknown, path: string): Promise<void> {
+  async sendMail(to: string, subject: string, variables: any, path: string): Promise<void> {
     const templateFileContent = fs.readFileSync(path).toString('utf-8');
 
     const templateParse = handlebars.compile(templateFileContent);
@@ -36,13 +37,13 @@ class EtherealMailProvider implements IMailProvider {
 
     const message = await this.client.sendMail({
       to,
-      from: 'Rentx <noreply@rentx.com.br>',
+      from: 'Rentx <noreplay@rentx.com.br>',
       subject,
       html: templateHTML,
     });
 
-    console.log(`Message sent: ${message.messageId}`);
-    console.log(`Preview URL: ${nodemailer.getTestMessageUrl(message)}`);
+    console.log('Message sent: %s', message.messageId);
+    console.log('Preview URL: %s', nodemailer.getTestMessageUrl(message));
   }
 }
 

@@ -146,7 +146,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
+                "type" : "object",
                 "properties": {
                   "email": {
                     "type": "string"
@@ -161,10 +161,10 @@
         },
         "responses": {
           "200": {
-            "description": "Success"
+            "description" : "Sucess"
           },
           "400": {
-            "description": "E-mail or password incorrect!"
+            "description": "Email or password incorrect"
           }
         }
       }
@@ -173,17 +173,12 @@
       "post": {
         "tags": ["Cars"],
         "summary": "Create a new car",
-        "description": "Create a new Car",
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
+        "description": "Create a new car",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/definitions/Car"
+                "$ref": "#definitions/Car"
               }
             }
           }
@@ -193,20 +188,18 @@
             "description": "Created"
           },
           "400": {
-            "description": "Car already exists"
+            "description": "Cars already exists"
           }
         }
       }
     },
-    "/cars/images/{id}": {
+    "cars/images/{id}": {
       "post": {
         "tags": ["Cars"],
-        "summary": "Upload car images",
+        "summary": "Upload images",
         "description": "Upload images",
         "security": [
-          {
-            "bearerAuth": []
-          }
+          { "bearerAuth": []}
         ],
         "parameters": [
           {
@@ -268,9 +261,6 @@
         },
         "daily_rate": {
           "type": "number"
-        },
-        "license_plate": {
-          "type": "string"
         },
         "fine_amount": {
           "type": "number"

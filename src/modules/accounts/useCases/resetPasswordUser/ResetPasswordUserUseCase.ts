@@ -4,8 +4,7 @@ import { inject, injectable } from 'tsyringe';
 import { IUsersRepository } from '@modules/accounts/repositories/IUsersRepository';
 import { IUsersTokensRepository } from '@modules/accounts/repositories/IUsersTokensRepository';
 import { IDateProvider } from '@shared/container/providers/DateProvider/IDateProvider';
-
-import { AppError } from '../../../../shared/errors/AppError';
+import { AppError } from '@shared/errors/AppError';
 
 interface IRequest {
   token: string;
@@ -27,12 +26,10 @@ class ResetPasswordUserUseCase {
     const userToken = await this.usersTokensRepository.findByRefreshToken(token);
 
     if (!userToken) {
-      throw new AppError('Invalid token');
+      throw new AppError('Token invalid!');
     }
 
-    const expiresDateIsBeforeNow = this.dateProvider.compareIfIsBefore(userToken.expires_date, this.dateProvider.dateNow());
-
-    if (expiresDateIsBeforeNow) {
+    if (this.dateProvider.compareIfIsBefore(userToken.expires_date, this.dateProvider.dateNow())) {
       throw new AppError('Token expired!');
     }
 
