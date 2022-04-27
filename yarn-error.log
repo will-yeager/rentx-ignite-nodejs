@@ -1,20 +1,30 @@
 Arguments: 
-  /home/will/.nvm/versions/node/v16.14.2/bin/node /home/will/.nvm/versions/node/v16.14.2/bin/yarn add @types/nodemailer -d
+  /home/will/.nvm/versions/node/v17.8.0/bin/node /usr/bin/yarn add @babel/cli @babel/core @babel/node @babel/plugin-proposal-class-properties @babel/puglin-proposal-decorators @babel/preset-env babel-plugin-module-resolver babel-plugin-transform-typescript-metadata
 
 PATH: 
-  /home/will/.nvm/versions/node/v16.14.2/bin:/home/will/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/var/lib/snapd/snap/bin
+  /home/will/.nvm/versions/node/v17.8.0/bin:/home/will/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/var/lib/snapd/snap/bin
 
 Yarn version: 
-  1.22.17
+  1.22.18
 
 Node version: 
-  16.14.2
+  17.8.0
 
 Platform: 
   linux x64
 
 Trace: 
-  Error: EACCES: permission denied, unlink '/home/will/Documents/repositories/rentx-ignite-nodejs/node_modules/.bin/acorn'
+  Error: https://registry.yarnpkg.com/@babel%2fpuglin-proposal-decorators: Not found
+      at Request.params.callback [as _callback] (/usr/lib/node_modules/yarn/lib/cli.js:66138:18)
+      at Request.self.callback (/usr/lib/node_modules/yarn/lib/cli.js:140883:22)
+      at Request.emit (node:events:527:28)
+      at Request.<anonymous> (/usr/lib/node_modules/yarn/lib/cli.js:141855:10)
+      at Request.emit (node:events:527:28)
+      at IncomingMessage.<anonymous> (/usr/lib/node_modules/yarn/lib/cli.js:141777:12)
+      at Object.onceWrapper (node:events:641:28)
+      at IncomingMessage.emit (node:events:539:35)
+      at endReadableNT (node:internal/streams/readable:1345:12)
+      at processTicksAndRejections (node:internal/process/task_queues:83:21)
 
 npm manifest: 
   {
@@ -24,7 +34,7 @@ npm manifest:
     "author": "Vyctor <dev.vyctor@gmail.com>",
     "license": "MIT",
     "scripts": {
-      "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files",
+      "build": "tsc",
       "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules --respawn src/shared/infra/http/server.ts",
       "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli",
       "test": "NODE_ENV=test jest --runInBand --detectOpenHandles",
@@ -38,7 +48,7 @@ npm manifest:
       "class-transformer": "^0.5.1",
       "csv-parse": "^4.15.4",
       "dayjs": "^1.10.6",
-      "dotenv": "^11.0.0",
+      "dotenv": "^16.0.0",
       "express": "^4.17.1",
       "express-async-errors": "^3.1.1",
       "handlebars": "^4.7.7",
@@ -2570,10 +2580,10 @@ Lockfile:
     dependencies:
       webidl-conversions "^5.0.0"
   
-  dotenv@^11.0.0:
-    version "11.0.0"
-    resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-11.0.0.tgz#ee37feddf8ada6d348a79e198312d4a8abfd1c1e"
-    integrity sha512-Fp/b504Y5W+e+FpCxTFMUZ7ZEQkQYF0rx+KZtmwixJxGQbLHrhCwo3FjZgNC8vIfrSi29PABNbMoCGD9YoiXbQ==
+  dotenv@^16.0.0:
+    version "16.0.0"
+    resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.0.0.tgz#c619001253be89ebb638d027b609c75c26e47411"
+    integrity sha512-qD9WU0MPM4SWLPJy/r2Be+2WgQj8plChsyrCNQzW/0WjvcJQiKQJ9mH3ZgB3fxbUUxgc/11ZJ0Fi5KiimWGz2Q==
   
   dotenv@^8.2.0:
     version "8.6.0"
