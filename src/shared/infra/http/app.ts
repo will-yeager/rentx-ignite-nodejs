@@ -1,18 +1,17 @@
 import 'reflect-metadata';
+
 import 'dotenv/config';
+import 'express-async-errors';
 import cors from 'cors';
 import express, { Request, Response, NextFunction } from 'express';
-import 'express-async-errors';
-
 import swaggerUi from 'swagger-ui-express';
-
-import * as Sentry from '@sentry/node';
-import * as Tracing from '@sentry/tracing';
 
 import '../../container';
 
 // Routes
 import upload from '@config/upload';
+import * as Sentry from '@sentry/node';
+import * as Tracing from '@sentry/tracing';
 import rateLimiter from '@shared/infra/http/middlewares/rateLimiter';
 
 import swaggerFile from '../../../swagger.json';
