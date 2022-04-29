@@ -6,3 +6,4 @@ tmp/*
 coverage
 !tmp/.gitkeep
 ormconfig.json
+docker-compose.yml
